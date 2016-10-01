@@ -7,8 +7,9 @@ package com.example.android.miwok;
 public class Word {
     private String englishWord;
     private String miwokWord;
+    private String image;
 
-    public Word(String english, String miwok){
+    public Word(String english, String miwok) {
         englishWord = english;
         miwokWord = miwok;
     }
@@ -19,5 +20,9 @@ public class Word {
 
     public String getMiwokWord() {
         return miwokWord;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
