@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/miwokWord"
+        android:id="@+id/miwok_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
@@ -14,7 +14,7 @@
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/englishWord"
+        android:id="@+id/english_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"

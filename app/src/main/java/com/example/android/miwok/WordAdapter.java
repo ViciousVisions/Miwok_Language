@@ -77,13 +77,13 @@ public class WordAdapter extends ArrayAdapter<Word> {
         //      id R.id.englishWord. In this case there is only one created per card.
         //Note: By this point the listItemView exists, so all we are doing is changing the
         //      text string for the english word and miwok word within the existing card (lisItemView)
-        TextView englishTextView = (TextView) listItemView.findViewById(R.id.englishWord);
+        TextView englishTextView = (TextView) listItemView.findViewById(R.id.english_text_view);
         // Get the english name from the current Word object and
         // set this text on the english TextView
         englishTextView.setText(currentWord.getEnglishWord());
 
         // Find the TextView in the list_item.xml layout with the ID miwokWord
-        TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwokWord);
+        TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
         // Get the miwok name from the current Word object and
         // set this text on the miwok TextView
         miwokTextView.setText(currentWord.getMiwokWord());
