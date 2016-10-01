@@ -1,14 +1,12 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
      * to populate into the lists.
      *
      * @param context The current context. Used to inflate the layout file.
-     * @param words A List of Word objects to display in a list
+     * @param words   A List of Word objects to display in a list
      */
     public WordAdapter(Activity context, ArrayList<Word> words) {
 
@@ -33,7 +31,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
-        super(context,0,words);
+        super(context, 0, words);
 
         //Note: context and words are passed to the ArrayAdapter's constructor by way of "super".
         //Note: Now ArrayAdapter has full access to the ArrayList "words".
@@ -43,15 +41,15 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
     /**
      * Provides a view for an AdapterView (ListView, GridView, etc.)
-     *
+     * <p>
      * Note: ArrayAdapter is essentially requesting that the data located at "position"
      * be placed in "convertView" so that ArrayAdapter can send it out to be displayed
      * (in this case to a ListView)
      *
-     * @param position The position in the list of data that should be displayed in the
-     *                 list item view.
+     * @param position    The position in the list of data that should be displayed in the
+     *                    list item view.
      * @param convertView The recycled view to populate.
-     * @param parent The parent ViewGroup that is used for inflation.
+     * @param parent      The parent ViewGroup that is used for inflation.
      * @return The View for the position in the AdapterView.
      */
     @NonNull
@@ -87,6 +85,18 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // Get the miwok name from the current Word object and
         // set this text on the miwok TextView
         miwokTextView.setText(currentWord.getMiwokWord());
+
+        // Find the TextView in the list_item.xml layout with the ID miwokWord
+        ImageView imageView = (ImageView) listItemView.findViewById(R.id.image_view);
+
+        if (currentWord.hasImage()) {
+            // Get the miwok name from the current Word object and
+            // set this text on the miwok TextView
+            imageView.setImageResource(currentWord.getImageResourceID());
+            imageView.setVisibility(View.VISIBLE);
+        } else {
+            imageView.setVisibility(View.GONE);
+        }
 
         // Return the whole list item layout (containing 2 TextViews)
         // so that it can be shown in the ListView

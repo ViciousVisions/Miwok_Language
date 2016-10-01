@@ -7,11 +7,20 @@ package com.example.android.miwok;
 public class Word {
     private String englishWord;
     private String miwokWord;
-    private String image;
+    private int imageResourceID;
+    private boolean mHasImage;
 
     public Word(String english, String miwok) {
         englishWord = english;
         miwokWord = miwok;
+        mHasImage = false;
+    }
+
+    public Word(String english, String miwok, int imageResourceID) {
+        englishWord = english;
+        miwokWord = miwok;
+        this.imageResourceID = imageResourceID;
+        mHasImage = true;
     }
 
     public String getEnglishWord() {
@@ -22,7 +31,16 @@ public class Word {
         return miwokWord;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageResourceID(int imageResourceID) {
+        this.imageResourceID = imageResourceID;
     }
+
+    public int getImageResourceID(){
+        return this.imageResourceID;
+    }
+
+    public boolean hasImage(){
+        return mHasImage;
+    }
+
 }
