@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 
 public class WordAdapter extends ArrayAdapter<Word> {
-    private int _ColorResourceID;
+    private int mColorResourceID;
 
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
@@ -26,6 +26,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
      *
      * @param context The current context. Used to inflate the layout file.
      * @param words   A List of Word objects to display in a list
+     * @param colorResourceID Color resource ID (Ex: R.color.red)
      */
     public WordAdapter(Activity context, ArrayList<Word> words, int colorResourceID) {
 
@@ -35,7 +36,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, words);
 
-        _ColorResourceID = colorResourceID;
+        mColorResourceID = colorResourceID;
 
         //Note: context and words are passed to the ArrayAdapter's constructor by way of "super".
         //Note: Now ArrayAdapter has full access to the ArrayList "words".
@@ -96,7 +97,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         if (currentWord.hasImage()) {
             // Get the miwok name from the current Word object and
             // set this text on the miwok TextView
-            imageView.setImageResource(currentWord.getImageResourceID());
+            imageView.setImageResource(currentWord.getImageResourceId());
             imageView.setVisibility(View.VISIBLE);
         } else {
             imageView.setVisibility(View.GONE);
@@ -104,7 +105,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         // Set background color around text
         // Find the color that the resource ID maps to
-        int color = ContextCompat.getColor(getContext(), _ColorResourceID);
+        int color = ContextCompat.getColor(getContext(), mColorResourceID);
         // Set the background color
         listItemView.findViewById(R.id.linear_layout_words).setBackgroundColor(color);
 
