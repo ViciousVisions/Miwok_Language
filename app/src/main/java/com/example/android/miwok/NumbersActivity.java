@@ -15,7 +15,6 @@
  */
 package com.example.android.miwok;
 
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,13 +23,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
 
-    MediaPlayer mediaPlayer;
+    MediaPlayer mMediaPlayer;
 
 
     @Override
@@ -63,15 +61,22 @@ public class NumbersActivity extends AppCompatActivity {
         // There should be a {@link ListView} with the view ID called list, which is declared in the
         // word_list.xml file.
         ListView listView = (ListView) findViewById(R.id.list_view);
-//        mediaPlayer = MediaPlayer.create(this,R.raw.number_one);
+//        mMediaPlayer = MediaPlayer.create(this,R.raw.number_one);
 
 
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mediaPlayer = MediaPlayer.create(NumbersActivity.this, words.get(position).getAudioResourceId());
-                mediaPlayer.start();
-                Log.v("MediaClick","Clicked");
+                releaseMediaPlayer();
+                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, words.get(position).getAudioResourceId());
+                mMediaPlayer.start();
+                mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        releaseMediaPlayer();
+                    }
+                });
+                Log.v("MediaClick", "Clicked");
             }
         });
 
@@ -81,67 +86,23 @@ public class NumbersActivity extends AppCompatActivity {
         // 1 argument, which is the {@link ArrayAdapter} with the variable name itemsAdapter.
         listView.setAdapter(adapter);
 
+    }
 
 
+    /**
+     * Clean up the media player by releasing its resources.
+     */
+    private void releaseMediaPlayer() {
+        // If the media player is not null, then it may be currently playing a sound.
+        if (mMediaPlayer != null) {
+            // Regardless of the current state of the media player, release its resources
+            // because we no longer need it.
+            mMediaPlayer.release();
 
-
-
-
-
-
-
-        //OLD VERSIONS OF THE CODE
-        /**
-         ArrayList<TextView> englishNumberViews = new ArrayList<TextView>();
-         LinearLayout rootView = (LinearLayout) findViewById(R.id.rootNumbersView);
-         rootView.setOrientation(LinearLayout.VERTICAL);
-         **/
-
-        /**
-         i = 0;
-         while (i < englishNumberList.size()) {
-         englishNumberViews.add(new TextView(rootView.getContext()));
-         englishNumberViews.get(i).setText(englishNumberList.get(i));
-         rootView.addView(englishNumberViews.get(i));
-         i++;
-         }
-         **/
-
-        /**
-         for (String englishNumber : englishNumberList) {
-         TextView word = new TextView(rootView.getContext().);
-         word.setText(englishNumberList.get(i++));
-         rootView.addView(word);
-         }
-         **/
-
-        /**
-         i = 0;
-         for (String englishNumber : englishNumberList) {
-         Log.v("ArrayCheck", "For Loop: Word at index " + i++ + ": " + englishNumber);
-         }
-
-         i = 0;
-         Iterator<String> listIterator = englishNumberList.iterator();
-         while (listIterator.hasNext()) {
-         Log.v("ArrayCheck", "While Loop 1: Word at index " + i++ + ": "
-         + listIterator.next());
-         }
-
-         i = 0;
-         while (i < englishNumberList.size()) {
-         Log.v("ArrayCheck", "While Loop 2: Word at index " + i + ": "
-         + englishNumberList.get(i++));
-         }
-         **/
-
-        /** old method
-         String[] englishNumberArray = {"one", "two", "three", "four", "five",
-         "six", "seven", "eight", "nine", "ten"};
-
-         for (String englishNumber : englishNumberArray) {
-         Log.v("ArrayCheck", "Word at index " + i++ + ": " + englishNumber);
-         }
-         **/
+            // Set the media player back to null. For our code, we've decided that
+            // setting the media player to null is an easy way to tell that the media player
+            // is not configured to play an audio file at the moment.
+            mMediaPlayer = null;
+        }
     }
 }
