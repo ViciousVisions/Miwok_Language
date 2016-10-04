@@ -18,6 +18,8 @@
     <!-- Image dimensions -->
     <dimen name="image_width">88dp</dimen>
     <dimen name="image_height">88dp</dimen>
+    <dimen name="play_image_width">24dp</dimen>
+    <dimen name="play_image_height">24dp</dimen>
     <!-- primary spacing -->
     <dimen name="primary_spacing">16dp</dimen>
     <!-- Word Sizes -->

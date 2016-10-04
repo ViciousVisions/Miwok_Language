@@ -41,4 +41,10 @@
             />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/play_image_view"
+        android:layout_width="@dimen/play_image_height"
+        android:layout_height="@dimen/play_image_width"/>
+
 </LinearLayout>
