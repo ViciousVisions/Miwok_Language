@@ -1,6 +1,8 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -108,6 +111,19 @@ public class WordAdapter extends ArrayAdapter<Word> {
         int color = ContextCompat.getColor(getContext(), mColorResourceID);
         // Set the background color
         listItemView.findViewById(R.id.linear_layout_words).setBackgroundColor(color);
+
+        ImageView playImageView = (ImageView) listItemView.findViewById(R.id.play_image_view);
+
+        // Add play icon and set background color
+        playImageView.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+        playImageView.setBackgroundColor(color);
+
+        RelativeLayout relativeLayout =
+                (RelativeLayout) listItemView.findViewById(R.id.card_relative_layout);
+        relativeLayout.setBackgroundColor(color);
+
+        color = ContextCompat.getColor(getContext(), R.color.tan_background);
+        imageView.setBackgroundColor(color);
 
         // Return the whole list item layout (containing 2 TextViews)
         // so that it can be shown in the ListView
