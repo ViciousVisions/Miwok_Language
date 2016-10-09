@@ -41,5 +41,16 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return NUMBER_OF_PAGES;
     }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0: return "Numbers";
+            case 1: return "Family";
+            case 2: return "Color";
+            case 3: return "Phrase";
+            default: return null;
+        }
+    }
 }
 

@@ -39,4 +39,9 @@
     <color name="miwok_text_color">#FFFFFF</color>
     <color name="english_text_color">#FFFFFF</color>
 
+    <!-- Indicator color -->
+    <color name="indicator_color">#FFFFFF</color>
+
+    <!-- Tab colors -->
+    <color name="unselectedTabTextColor">#A8A19E</color>
 </resources>
